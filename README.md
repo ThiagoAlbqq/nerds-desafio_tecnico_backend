@@ -28,7 +28,7 @@ O projeto segue os princípios de Responsabilidade Única (SRP) e Clean Code, or
 1. **Pré-requisitos**: Ter o JDK 21 e o Maven instalados.
 2. **Clonar o repositório**:
 ```bash
-git clone [LINK_DO_SEU_REPOSITORIO]
+git clone https://github.com/ThiagoAlbqq/nerds-desafio_tecnico_backend.git
 
 ```
 
