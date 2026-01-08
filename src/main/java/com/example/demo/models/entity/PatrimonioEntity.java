@@ -24,9 +24,9 @@ public class PatrimonioEntity {
     private String nome;
 
     @Column(unique = true)
-    private String tombo;
+    private String numeroSerie;
 
     private String descricao;
-    private String categoria;
+    private String tipo;
     private LocalDate dataAquisicao;
 }

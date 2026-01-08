@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Configuration
@@ -21,7 +22,7 @@ public class DatabaseSeeder implements CommandLineRunner {
         log.info("Verificando necessidade de seed de dados...");
 
         if (repository.count() == 0) {
-            log.info("Banco vazio. Iniciando a criação dos 10 patrimônios padrão...");
+            log.info("Banco vazio. Iniciando a criacao dos 10 patrimonios padrao...");
 
             List<PatrimonioEntity> patrimonios = List.of(
                     criar("Notebook Acer Nitro V15", "UFC-NERDS-2026-001", "i5, RTX 4050", "Eletrônicos"),
@@ -37,18 +38,19 @@ public class DatabaseSeeder implements CommandLineRunner {
             );
 
             repository.saveAll(patrimonios);
-            log.info("Seed concluída com sucesso! 10 itens adicionados.");
+            log.info("Seed concluida com sucesso! 10 itens adicionados.");
         } else {
-            log.info("O banco já possui dados. Seed ignorada.");
+            log.info("O banco ja possui dados. Seed ignorada.");
         }
     }
 
     private PatrimonioEntity criar(String nome, String tombo, String desc, String cat) {
         PatrimonioEntity p = new PatrimonioEntity();
         p.setNome(nome);
-        p.setTombo(tombo);
+        p.setNumeroSerie(tombo);
         p.setDescricao(desc);
-        p.setCategoria(cat);
+        p.setTipo(cat);
+        p.setDataAquisicao(LocalDate.now());
         return p;
     }
 }

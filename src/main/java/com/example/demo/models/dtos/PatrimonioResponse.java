@@ -1,9 +1,12 @@
 package com.example.demo.models.dtos;
 
+import java.time.LocalDate;
+
 public record PatrimonioResponse(
         Long id,
         String nome,
-        String tombo,
+        String numeroSerie,
         String descricao,
-        String categoria
+        String tipo,
+        LocalDate dataAquisicao
 ) {}

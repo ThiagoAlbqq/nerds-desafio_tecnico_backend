@@ -60,6 +60,16 @@ mvn spring-boot:run
 | PUT | `/api/patrimonio/{id}` | Atualiza os dados de um equipamento existente. |
 | DELETE | `/api/patrimonio/{id}` | Remove um equipamento do sistema. |
 
+## 📝 Exemplo de JSON para Cadastro (POST)
+```json
+{
+  "nome": "Notebook Acer Nitro",
+  "tipo": "Eletrônico",
+  "numeroSerie": "SN-NERDS-2026",
+  "descricao": "i5, 16GB RAM, RTX 4050",
+  "dataAquisicao": "2026-01-08"
+}
+```
 
 ## ⚖️ Regras de Negócio e Diferenciais
 

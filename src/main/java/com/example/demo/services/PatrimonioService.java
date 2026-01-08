@@ -22,8 +22,8 @@ public class PatrimonioService {
 
     @Transactional
     public PatrimonioEntity criar(PatrimonioEntity entity) {
-        if (repository.findByTombo(entity.getTombo()).isPresent()) {
-            throw new BusinessException("Já existe um equipamento cadastrado com o número de série: " + entity.getTombo());
+        if (repository.findByNumeroSerie(entity.getNumeroSerie()).isPresent()) {
+            throw new BusinessException("Já existe um equipamento cadastrado com o número de série: " + entity.getNumeroSerie());
         }
         return repository.save(entity);
     }
@@ -37,15 +37,15 @@ public class PatrimonioService {
     public PatrimonioEntity atualizar(Long id, PatrimonioEntity novosDados) {
         PatrimonioEntity existente = buscarPorId(id);
 
-        if (!existente.getTombo().equals(novosDados.getTombo()) &&
-                repository.findByTombo(novosDados.getTombo()).isPresent()) {
+        if (!existente.getNumeroSerie().equals(novosDados.getNumeroSerie()) &&
+                repository.findByNumeroSerie(novosDados.getNumeroSerie()).isPresent()) {
             throw new BusinessException("Não é possível atualizar: O novo número de série já está em uso.");
         }
 
         existente.setNome(novosDados.getNome());
         existente.setDescricao(novosDados.getDescricao());
-        existente.setCategoria(novosDados.getCategoria());
-        existente.setTombo(novosDados.getTombo());
+        existente.setTipo(novosDados.getTipo());
+        existente.setNumeroSerie(novosDados.getNumeroSerie());
 
         return repository.save(existente);
     }

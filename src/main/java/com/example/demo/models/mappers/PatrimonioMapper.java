@@ -12,18 +12,20 @@ public class PatrimonioMapper {
         return new PatrimonioResponse(
                 entity.getId(),
                 entity.getNome(),
-                entity.getTombo(),
+                entity.getNumeroSerie(),
                 entity.getDescricao(),
-                entity.getCategoria()
+                entity.getTipo(),
+                entity.getDataAquisicao()
         );
     }
 
     public PatrimonioEntity toEntity(PatrimonioRequest request) {
         PatrimonioEntity entity = new PatrimonioEntity();
         entity.setNome(request.nome());
-        entity.setTombo(request.tombo());
+        entity.setNumeroSerie(request.numeroSerie());
         entity.setDescricao(request.descricao());
-        entity.setCategoria(request.categoria());
+        entity.setTipo(request.tipo());
+        entity.setDataAquisicao(request.dataAquisicao());
         return entity;
     }
 }

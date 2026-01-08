@@ -9,5 +9,5 @@ import com.example.demo.models.entity.PatrimonioEntity;
 
 @Repository
 public interface PatrimonioRepository extends JpaRepository<PatrimonioEntity, Long> {
-    Optional<PatrimonioEntity> findByTombo(String tombo);
+    Optional<PatrimonioEntity> findByNumeroSerie(String numeroSerie);
 }
