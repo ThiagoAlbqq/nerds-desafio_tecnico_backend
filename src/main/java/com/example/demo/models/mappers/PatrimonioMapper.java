@@ -2,6 +2,7 @@ package com.example.demo.models.mappers;
 
 import com.example.demo.models.dtos.PatrimonioRequest;
 import com.example.demo.models.dtos.PatrimonioResponse;
+import com.example.demo.models.dtos.PatrimonioUpdateRequest;
 import com.example.demo.models.entity.PatrimonioEntity;
 import org.springframework.stereotype.Component;
 
@@ -20,6 +21,16 @@ public class PatrimonioMapper {
     }
 
     public PatrimonioEntity toEntity(PatrimonioRequest request) {
+        PatrimonioEntity entity = new PatrimonioEntity();
+        entity.setNome(request.nome());
+        entity.setNumeroSerie(request.numeroSerie());
+        entity.setDescricao(request.descricao());
+        entity.setTipo(request.tipo());
+        entity.setDataAquisicao(request.dataAquisicao());
+        return entity;
+    }
+
+    public PatrimonioEntity toUpdateEntity(PatrimonioUpdateRequest request) {
         PatrimonioEntity entity = new PatrimonioEntity();
         entity.setNome(request.nome());
         entity.setNumeroSerie(request.numeroSerie());

@@ -37,15 +37,18 @@ public class PatrimonioService {
     public PatrimonioEntity atualizar(Long id, PatrimonioEntity novosDados) {
         PatrimonioEntity existente = buscarPorId(id);
 
-        if (!existente.getNumeroSerie().equals(novosDados.getNumeroSerie()) &&
-                repository.findByNumeroSerie(novosDados.getNumeroSerie()).isPresent()) {
-            throw new BusinessException("Não é possível atualizar: O novo número de série já está em uso.");
+        String novoSerie = novosDados.getNumeroSerie();
+        if (novoSerie != null && !novoSerie.equals(existente.getNumeroSerie())) {
+            if (repository.existsByNumeroSerie(novoSerie)) {
+                throw new BusinessException("Não é possível atualizar: O novo número de série já está em uso.");
+            }
+            existente.setNumeroSerie(novoSerie);
         }
 
-        existente.setNome(novosDados.getNome());
-        existente.setDescricao(novosDados.getDescricao());
-        existente.setTipo(novosDados.getTipo());
-        existente.setNumeroSerie(novosDados.getNumeroSerie());
+        if (novosDados.getNome() != null) existente.setNome(novosDados.getNome());
+        if (novosDados.getDescricao() != null) existente.setDescricao(novosDados.getDescricao());
+        if (novosDados.getDataAquisicao() != null) existente.setDataAquisicao(novosDados.getDataAquisicao());
+        if (novosDados.getTipo() != null) existente.setTipo(novosDados.getTipo());
 
         return repository.save(existente);
     }

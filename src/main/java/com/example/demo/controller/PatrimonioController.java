@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.models.dtos.PatrimonioRequest;
 import com.example.demo.models.dtos.PatrimonioResponse;
+import com.example.demo.models.dtos.PatrimonioUpdateRequest;
 import com.example.demo.models.mappers.PatrimonioMapper;
 import com.example.demo.services.PatrimonioService;
 import jakarta.validation.Valid;
@@ -46,9 +47,8 @@ public class PatrimonioController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PatrimonioResponse> atualizar(@PathVariable Long id,
-                                                        @RequestBody @Valid PatrimonioRequest request) {
-        var entidadeDados = mapper.toEntity(request);
+    public ResponseEntity<PatrimonioResponse> atualizar(@PathVariable Long id, @RequestBody PatrimonioUpdateRequest request) {
+        var entidadeDados = mapper.toUpdateEntity(request);
         var atualizado = service.atualizar(id, entidadeDados);
         return ResponseEntity.ok(mapper.toResponse(atualizado));
     }
